@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {Route, Routes} from "react-router-dom";
+import Main from './components/main/Main'
+import Register from './components/auth/register/Register'
+import Login from './components/auth/login/Login'
+import {useSelector} from "react-redux";
+import {RootState} from "./store";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const localStorageMark = localStorage.getItem('authed') === 'true'
+    const stateMark = useSelector((state: RootState) => state.auth.loggedIn)
+
+    return (localStorageMark || stateMark)
+        ? <>
+            <Routes>
+                <Route index element={<Main/>}/>
+                <Route path="/main/*" element={<Main/>}/>
+                <Route path="/skills/*" element={null}/>
+                <Route path="/projects/*" element={null}/>
+                <Route path="/contact/*" element={null}/>
+                <Route path="/settings/*" element={null}/>
+            </Routes>
+        </>
+        : <>
+            <Routes>
+                <Route index element={<Login/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
+            </Routes>
+        </>
 }
 
-export default App;
+export default App

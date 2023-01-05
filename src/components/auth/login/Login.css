@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
+@import "../bg.css";
+@import "../submit.css";
+
+.login-main {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 100vh;
+    font-size: 2em;
+    background: linear-gradient(60deg, #733053, #44225c, #45445e, #314287);
+}
+.login-light {
+    width: 100%;
+    height: 25vh;
+    position: absolute;
+    filter: blur(90px);
+}
+.login-topLight {
+    background: rgba(235, 154, 245, 0.37);
+    top: 0;
+}
+.login-bottomLight {
+    background: rgba(154, 245, 237, 0.52);
+    bottom: 0;
+}
+.login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    border-radius: 24px;
+    min-height: 80vh;
+    padding: 85px;
+    width: 450px;
+    z-index: 99;
+}
+.login-content > * {
+    width: 100%;
+}
+.login-content-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(3px);
+    border-radius: 24px;
+}
+.login-label {
+    margin-top: -75px;
+}
+.login-label > p {
+    text-align: center;
+    font-size: 2.5em;
+    font-family: 'Changa', sans-serif;
+}
+.login-credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.login-credentials > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.login-credentials > div > input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid #272634;
+    font-size: 0.7em;
+    color: #fff;
+    padding: 10px;
+    font-family: 'Inconsolata', monospace;
+    letter-spacing: 0.1em;
+}
+.login-credentials > div > input::placeholder {
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.59);
+    padding: 10px;
+    font-family: 'Inconsolata', monospace;
+    letter-spacing: 0.1em;
+}
+.login-credentials > div > input:focus {
+    border: 3px dashed #272634;
+    border-radius: 14px;
+    box-sizing: border-box;
+}
+.login-password {
+    display: flex;
+    gap: 10px;
+}
+.login-password > i {
+    cursor: pointer;
+    color: #525252;
+}
+.login-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.login-footer > a {
+    text-align: center;
+    font-size: 0.6em;
+}
+.login-credentials-error {
+    font-family: 'Inconsolata', monospace;
+    color: red;
+    font-size: 0.5em;
+    padding: 0px 20px;
+    margin: -40px 0;
+}
