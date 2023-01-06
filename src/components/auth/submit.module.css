@@ -34,6 +34,11 @@
     transform-origin: center;
     transition: background 0.3s linear, width 0.3s linear;
 }
+@media (max-width: 329px) {
+    .btnFancy::before {
+        width: 3em;
+    }
+}
 
 .btnFancy .btnText {
     font-size: 1.3em;

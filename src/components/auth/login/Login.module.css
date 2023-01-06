@@ -169,18 +169,6 @@
     .credentials > div > input {
         font-size: .5em;
     }
-    .btnFancy::before {
-        content: " ";
-        width: 3rem;
-        height: 2px;
-        background: black;
-        top: 50%;
-        left: 1.5em;
-        position: absolute;
-        transform: translateY(-50%);
-        transform-origin: center;
-        transition: background 0.3s linear, width 0.3s linear;
-    }
 }
 @media (min-width: 330px) and (max-width:576px) {
     /* -----------   PHONE   ----------- */
