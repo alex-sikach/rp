@@ -107,12 +107,18 @@ export const auth = createSlice({
         builder.addCase(login.fulfilled, (state: IAuthState) => {
             state.loading = false
             state.error = null;
-            localStorage.setItem('authed', 'true')
+            localStorage.setItem('authed', JSON.stringify({
+                authed: 'true',
+                expires: Date.now() + (1*24*60*60*1000) // expires in 1 day
+            }))
         })
         builder.addCase(login.rejected, (state: IAuthState, action: any) => {
             state.loading = false;
             state.error = action.payload.message || 'Lost error message'
-            localStorage.setItem('authed', 'false')
+            localStorage.setItem('authed', JSON.stringify({
+                authed: 'false',
+                expires: Date.now()
+            }))
         })
         builder.addCase(logout.pending, (state: IAuthState) => {
             state.loading = true
@@ -121,12 +127,18 @@ export const auth = createSlice({
         builder.addCase(logout.fulfilled, (state: IAuthState) => {
             state.loading = false
             state.error = null
-            localStorage.setItem('authed', 'false')
+            localStorage.setItem('authed', JSON.stringify({
+                authed: 'false',
+                expires: Date.now()
+            }))
         })
         builder.addCase(logout.rejected, (state: IAuthState, action: any) => {
             state.loading = false;
             state.error = action.payload.message || 'Lost error message'
-            localStorage.setItem('authed', 'false')
+            localStorage.setItem('authed', JSON.stringify({
+                authed: 'false',
+                expires: Date.now()
+            }))
         })
         builder.addCase(register.pending, (state: IAuthState) => {
             state.loading = true

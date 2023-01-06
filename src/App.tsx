@@ -7,10 +7,10 @@ import {useSelector} from "react-redux";
 import {RootState} from "./store";
 
 function App() {
-    const localStorageMark = localStorage.getItem('authed') === 'true'
+    const localStorageMark = JSON.parse(localStorage.getItem('authed') || '{"authed": "false"}')
     const stateMark = useSelector((state: RootState) => state.auth.loggedIn)
 
-    return (localStorageMark || stateMark)
+    return ((localStorageMark.authed && Date.now() < localStorageMark.expires) || stateMark)
         ? <>
             <Routes>
                 <Route index element={<Main/>}/>
