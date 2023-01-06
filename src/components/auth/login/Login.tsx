@@ -1,9 +1,11 @@
 import React from "react";
-import './Login.css'
+import styles from './Login.module.css'
+import bg from '../bg.module.css'
+import btn from '../submit.module.css'
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {login as loginAC, setData, clearData, setError} from "../../../slices/auth";
-import {ILogin} from "../../../declaration/interfaces";
+import {ILogin} from "../../../types/interfaces";
 import {RootState} from "../../../store";
 
 function Login() {
@@ -58,19 +60,19 @@ function Login() {
 
 
     return (
-        <div className="login-main">
-            <div className="login-topLight login-light"></div>
-            <div className="login-content">
-                <div className="login-content-bg"></div>
-                <div className="login-label">
+        <div className={styles.main}>
+            <div className={styles.topLight + " " + styles.light}></div>
+            <div className={styles.content}>
+                <div className={bg.contentBg + " " + styles.contentBg}></div>
+                <div className={styles.label}>
                     <p>{
                         useSelector((state: RootState) => state.auth.loading)
                         ? 'Loading'
                         : 'Sign in'
                     }</p>
                 </div>
-                <div className="login-credentials">
-                    <div className="login-username">
+                <div className={styles.credentials}>
+                    <div className={styles.username}>
                         <input
                             type="text"
                             ref={login}
@@ -79,7 +81,7 @@ function Login() {
                             onChange={() => setLoginValue(login.current?.value ?? 'error')}
                         />
                     </div>
-                    <div className="login-password">
+                    <div className={styles.password}>
                         <input
                             type="password"
                             ref={password}
@@ -91,21 +93,21 @@ function Login() {
                     </div>
                     {
                         error
-                        ? <div><p className="login-credentials-error">{error}</p></div>
+                        ? <div><p className={styles.credentialsError}>{error}</p></div>
                         : ''
                     }
                 </div>
-                <div className="login-footer">
-                    <button onClick={loginSubmit} className="login-btn-fancy">
-                        <span className="login-btn-top-key"></span>
-                        <span className="login-btn-text">Login</span>
-                        <span className="login-btn-bottom-key-1"></span>
-                        <span className="login-btn-bottom-key-2"></span>
+                <div className={styles.footer}>
+                    <button onClick={loginSubmit} className={btn.btnFancy + " " + styles.btnFancy}>
+                        <span className={btn.btnTopKey}></span>
+                        <span className={btn.btnText + " " + styles.btnText}>Login</span>
+                        <span className={btn.btnBottomKey1}></span>
+                        <span className={btn.btnBottomKey2}></span>
                     </button>
                     <Link to="/registration">Have no account?</Link>
                 </div>
             </div>
-            <div className="login-bottomLight login-light"></div>
+            <div className={styles.bottomLight + " " + styles.light}></div>
         </div>
     )
 }

@@ -1,0 +1,34 @@
+.bar {
+    background: gray;
+    display: flex;
+    flex-direction: column;
+}
+.bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+.bar-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.bar-avatar {
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+}
+.bar-name, .bar-lastname {
+    text-align: center;
+}
+.bar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bar-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,4 +1,4 @@
-import {theme} from "../declaration/types";
+import {theme} from "./types";
 
 export interface IAuthState {
     loggedIn: boolean

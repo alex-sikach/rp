@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IAuthState, ILogin, IRegister} from "../declaration/interfaces";
+import {IAuthState, ILogin, IRegister} from "../types/interfaces";
 import axios from "axios";
 
 const initialState: IAuthState = {

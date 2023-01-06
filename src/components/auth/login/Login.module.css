@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Changa:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&display=swap');
-@import "../bg.css";
-@import "../submit.css";
 
-.login-main {
+.main {
+    position: relative;
     display: grid;
     place-items: center;
     width: 100vw;
@@ -11,21 +10,24 @@
     font-size: 2em;
     background: linear-gradient(60deg, #733053, #44225c, #45445e, #314287) repeat;
 }
-.login-light {
+.main > * {
+    position: relative;
+}
+.light {
     width: 100%;
     height: 25vh;
     position: absolute;
     filter: blur(90px);
 }
-.login-topLight {
+.topLight {
     background: rgba(235, 154, 245, 0.37);
     top: 0;
 }
-.login-bottomLight {
+.bottomLight {
     background: rgba(154, 245, 237, 0.52);
     bottom: 0;
 }
-.login-content {
+.content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,10 +39,10 @@
     width: 35vw;
     z-index: 99;
 }
-.login-content > * {
+.content > * {
     width: 100%;
 }
-.login-content-bg {
+.contentBg {
     position: absolute;
     top: 0;
     right: 0;
@@ -50,26 +52,26 @@
     filter: blur(3px);
     border-radius: 24px;
 }
-.login-label {
+.label {
     margin-top: -40px;
     width: max-content;
 }
-.login-label > p {
+.label > p {
     text-align: center;
     font-size: 2.9em;
     font-family: 'Changa', sans-serif;
 }
-.login-credentials {
+.credentials {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
-.login-credentials > div {
+.credentials > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.login-credentials > div > input {
+.credentials > div > input {
     width: 100%;
     background: transparent;
     border: none;
@@ -81,41 +83,41 @@
     font-family: 'Inconsolata', monospace;
     letter-spacing: 0.1em;
 }
-.login-credentials > div > input::placeholder {
+.credentials > div > input::placeholder {
     font-size: 1em;
     color: rgba(255, 255, 255, 0.74);
     padding: 10px;
     font-family: 'Inconsolata', monospace;
     letter-spacing: 0.1em;
 }
-.login-credentials > div > input:focus {
+.credentials > div > input:focus {
     border: 3px dashed #272634;
     border-radius: 14px;
     box-sizing: border-box;
 }
-.login-password {
+.password {
     display: flex;
     gap: 20px;
 }
-.login-password > i {
+.password > i {
     cursor: pointer;
     color: #525252;
 }
-.login-password > i:active {
+.password > i:active {
     background: none;
 }
-.login-footer {
+.footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.login-btn-text {
+.btnText {
     animation: login infinite 1s ease-in-out alternate;
 }
-.login-btn-fancy:hover .login-btn-text {
+.btnFancy:hover .btnText {
     animation: none;
 }
-.login-footer > a {
+.footer > a {
     text-align: center;
     font-size: 0.6em;
     transform: translateY(20px);
@@ -124,7 +126,7 @@
     from { color : #000; }
     to { color: #fff; }
 }
-.login-credentials-error {
+.credentialsError {
     font-family: 'Inconsolata', monospace;
     color: #ff0000;
     font-size: .5em;
@@ -134,40 +136,40 @@
 
 }
 @media (max-width: 329px) {
-    .login-main {
+    .main {
         width: 100vw;
     }
-    .login-content {
+    .content {
         padding: 15px;
         gap: 10px;
     }
-    .login-label > p {
+    .label > p {
         text-align: center;
         font-size: 1.4em;
         white-space: nowrap;
         font-family: 'Changa', sans-serif;
     }
-    .login-password {
+    .password {
         gap: 5px;
     }
-    .login-password > i {
+    .password > i {
         transform: scale(.6);
     }
-    .login-credentials-error {
+    .credentialsError {
         font-size: .37em;
         margin: -20px 0 -40px 0;
     }
-    .login-btn-fancy {
+    .btnFancy {
         margin-top: -25px;
     }
-    .login-footer > a {
+    .footer > a {
         margin-top: -60px;
         font-size: .45em;
     }
-    .login-credentials > div > input {
+    .credentials > div > input {
         font-size: .5em;
     }
-    .login-btn-fancy::before {
+    .btnFancy::before {
         content: " ";
         width: 3rem;
         height: 2px;
@@ -182,147 +184,147 @@
 }
 @media (min-width: 330px) and (max-width:576px) {
     /* -----------   PHONE   ----------- */
-    .login-main {
+    .main {
         width: 100vw;
     }
-    .login-content {
+    .content {
         padding: 15px;
     }
-    .login-label > p {
+    .label > p {
         text-align: center;
         font-size: 1.8em;
         white-space: nowrap;
         font-family: 'Changa', sans-serif;
     }
-    .login-password {
+    .password {
         gap: 5px;
     }
-    .login-password > i {
+    .password > i {
         transform: scale(.9);
     }
-    .login-credentials-error {
+    .credentialsError {
         font-size: .37em;
         margin: -20px 0 -40px 0;
     }
-    .login-btn-fancy {
+    .btnFancy {
         margin-top: -25px;
     }
-    .login-footer > a {
+    .footer > a {
         margin-top: -40px;
         font-size: .45em;
     }
-    .login-credentials > div > input::placeholder {
+    .credentials > div > input::placeholder {
         font-size: .8em;
     }
-    .login-credentials > div > input {
+    .credentials > div > input {
         font-size: .7em;
     }
 }
 @media (min-width: 576px) and (max-width: 640px) {
-    .login-label > p {
+    .label > p {
         font-size: 2.6em;
     }
-    .login-credentials-error {
+    .credentialsError {
         margin-top: -10px;
         font-size: .4em;
     }
 }
 @media (min-width: 640px) and (max-width: 992px) {
     /* -----------   TABLET   ----------- */
-    .login-content-bg {
+    .contentBg {
         display: none;
     }
-    .login-main {
+    .main {
         overflow: hidden;
         width: 100vw;
         height: 100vh;
         font-size: 3.5em;
     }
-    .login-content {
+    .content {
         margin-top: -140px;
         width: 90%;
         height: 85%;
         gap: 100px;
     }
-    .login-btn-fancy {
+    .btnFancy {
         transform: translateY(-20px);
     }
-    .login-btn-text {
+    .btnText {
         animation: none;
     }
-    .login-footer > a {
+    .footer > a {
         transform: translateY(50px);
     }
-    .login-label {
+    .label {
         transform: translateY(30px);
     }
-    .login-credentials-error {
+    .credentialsError {
         margin-top: -15px;
     }
 }
 
 @media (max-width: 992px) {
     /* -----------   ALL NOT PC   ----------- */
-    .login-content-bg {
+    .contentBg {
         display: none;
     }
-    .login-main {
+    .main {
         overflow: hidden;
         width: 100vw;
         height: 100vh;
         font-size: 3.5em;
     }
-    .login-content {
+    .content {
         margin-top: -140px;
         width: 90%;
         height: 85%;
         gap: 100px;
     }
-    .login-btn-fancy {
+    .btnFancy {
         transform: translateY(-20px);
     }
-    .login-btn-text {
+    .btnText {
         animation: none;
     }
-    .login-footer > a {
+    .footer > a {
         transform: translateY(50px);
     }
-    .login-label {
+    .label {
         transform: translateY(30px);
     }
-    .login-credentials > div > input::placeholder {
+    .credentials > div > input::placeholder {
         color: rgba(255, 255, 255, 0.53);
     }
 }
 @media (min-width: 992px) and (max-width: 1100px) {
-    .login-content {
+    .content {
         width: 45vw;
         height: 90vh;
     }
 }
 @media (min-width: 1100px) and (max-width: 1500px) {
-    .login-main {
+    .main {
         font-size: 2.4em;
     }
-    .login-content {
+    .content {
         width: 40vw;
         height: 90vh;
     }
 }
 @media (min-width: 1500px) and (min-width: 1700px) {
-    .login-main {
+    .main {
         font-size: 2.6em;
     }
-    .login-content {
+    .content {
         width: 45vw;
         height: 80vh;
     }
 }
 @media (min-width: 1700px) {
-    .login-main {
+    .main {
         font-size: 2.8em;
     }
-    .login-content {
+    .content {
         width: 45vw;
         height: 80vh;
     }
