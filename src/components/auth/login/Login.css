@@ -6,10 +6,10 @@
 .login-main {
     display: grid;
     place-items: center;
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
     font-size: 2em;
-    background: linear-gradient(60deg, #733053, #44225c, #45445e, #314287);
+    background: linear-gradient(60deg, #733053, #44225c, #45445e, #314287) repeat;
 }
 .login-light {
     width: 100%;
@@ -32,9 +32,9 @@
     justify-content: center;
     gap: 50px;
     border-radius: 24px;
-    min-height: 80vh;
+    height: 87vh;
     padding: 85px;
-    width: 450px;
+    width: 35vw;
     z-index: 99;
 }
 .login-content > * {
@@ -51,11 +51,12 @@
     border-radius: 24px;
 }
 .login-label {
-    margin-top: -75px;
+    margin-top: -40px;
+    width: max-content;
 }
 .login-label > p {
     text-align: center;
-    font-size: 2.5em;
+    font-size: 2.9em;
     font-family: 'Changa', sans-serif;
 }
 .login-credentials {
@@ -82,7 +83,7 @@
 }
 .login-credentials > div > input::placeholder {
     font-size: 1em;
-    color: rgba(255, 255, 255, 0.59);
+    color: rgba(255, 255, 255, 0.74);
     padding: 10px;
     font-family: 'Inconsolata', monospace;
     letter-spacing: 0.1em;
@@ -94,25 +95,235 @@
 }
 .login-password {
     display: flex;
-    gap: 10px;
+    gap: 20px;
 }
 .login-password > i {
     cursor: pointer;
     color: #525252;
+}
+.login-password > i:active {
+    background: none;
 }
 .login-footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
+.login-btn-text {
+    animation: login infinite 1s ease-in-out alternate;
+}
+.login-btn-fancy:hover .login-btn-text {
+    animation: none;
+}
 .login-footer > a {
     text-align: center;
     font-size: 0.6em;
+    transform: translateY(20px);
+}
+@keyframes login {
+    from { color : #000; }
+    to { color: #fff; }
 }
 .login-credentials-error {
     font-family: 'Inconsolata', monospace;
-    color: red;
-    font-size: 0.5em;
-    padding: 0px 20px;
+    color: #ff0000;
+    font-size: .5em;
+    font-weight: 500;
+    padding: 0px 10px;
     margin: -40px 0;
+
+}
+@media (max-width: 329px) {
+    .login-main {
+        width: 100vw;
+    }
+    .login-content {
+        padding: 15px;
+        gap: 10px;
+    }
+    .login-label > p {
+        text-align: center;
+        font-size: 1.4em;
+        white-space: nowrap;
+        font-family: 'Changa', sans-serif;
+    }
+    .login-password {
+        gap: 5px;
+    }
+    .login-password > i {
+        transform: scale(.6);
+    }
+    .login-credentials-error {
+        font-size: .37em;
+        margin: -20px 0 -40px 0;
+    }
+    .login-btn-fancy {
+        margin-top: -25px;
+    }
+    .login-footer > a {
+        margin-top: -60px;
+        font-size: .45em;
+    }
+    .login-credentials > div > input {
+        font-size: .5em;
+    }
+    .login-btn-fancy::before {
+        content: " ";
+        width: 3rem;
+        height: 2px;
+        background: black;
+        top: 50%;
+        left: 1.5em;
+        position: absolute;
+        transform: translateY(-50%);
+        transform-origin: center;
+        transition: background 0.3s linear, width 0.3s linear;
+    }
+}
+@media (min-width: 330px) and (max-width:576px) {
+    /* -----------   PHONE   ----------- */
+    .login-main {
+        width: 100vw;
+    }
+    .login-content {
+        padding: 15px;
+    }
+    .login-label > p {
+        text-align: center;
+        font-size: 1.8em;
+        white-space: nowrap;
+        font-family: 'Changa', sans-serif;
+    }
+    .login-password {
+        gap: 5px;
+    }
+    .login-password > i {
+        transform: scale(.9);
+    }
+    .login-credentials-error {
+        font-size: .37em;
+        margin: -20px 0 -40px 0;
+    }
+    .login-btn-fancy {
+        margin-top: -25px;
+    }
+    .login-footer > a {
+        margin-top: -40px;
+        font-size: .45em;
+    }
+    .login-credentials > div > input::placeholder {
+        font-size: .8em;
+    }
+    .login-credentials > div > input {
+        font-size: .7em;
+    }
+}
+@media (min-width: 576px) and (max-width: 640px) {
+    .login-label > p {
+        font-size: 2.6em;
+    }
+    .login-credentials-error {
+        margin-top: -10px;
+        font-size: .4em;
+    }
+}
+@media (min-width: 640px) and (max-width: 992px) {
+    /* -----------   TABLET   ----------- */
+    .login-content-bg {
+        display: none;
+    }
+    .login-main {
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        font-size: 3.5em;
+    }
+    .login-content {
+        margin-top: -140px;
+        width: 90%;
+        height: 85%;
+        gap: 100px;
+    }
+    .login-btn-fancy {
+        transform: translateY(-20px);
+    }
+    .login-btn-text {
+        animation: none;
+    }
+    .login-footer > a {
+        transform: translateY(50px);
+    }
+    .login-label {
+        transform: translateY(30px);
+    }
+    .login-credentials-error {
+        margin-top: -15px;
+    }
+}
+
+@media (max-width: 992px) {
+    /* -----------   ALL NOT PC   ----------- */
+    .login-content-bg {
+        display: none;
+    }
+    .login-main {
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        font-size: 3.5em;
+    }
+    .login-content {
+        margin-top: -140px;
+        width: 90%;
+        height: 85%;
+        gap: 100px;
+    }
+    .login-btn-fancy {
+        transform: translateY(-20px);
+    }
+    .login-btn-text {
+        animation: none;
+    }
+    .login-footer > a {
+        transform: translateY(50px);
+    }
+    .login-label {
+        transform: translateY(30px);
+    }
+    .login-credentials > div > input::placeholder {
+        color: rgba(255, 255, 255, 0.53);
+    }
+}
+@media (min-width: 992px) and (max-width: 1100px) {
+    .login-content {
+        width: 45vw;
+        height: 90vh;
+    }
+}
+@media (min-width: 1100px) and (max-width: 1500px) {
+    .login-main {
+        font-size: 2.4em;
+    }
+    .login-content {
+        width: 40vw;
+        height: 90vh;
+    }
+}
+@media (min-width: 1500px) and (min-width: 1700px) {
+    .login-main {
+        font-size: 2.6em;
+    }
+    .login-content {
+        width: 45vw;
+        height: 80vh;
+    }
+}
+@media (min-width: 1700px) {
+    .login-main {
+        font-size: 2.8em;
+    }
+    .login-content {
+        width: 45vw;
+        height: 80vh;
+    }
 }
