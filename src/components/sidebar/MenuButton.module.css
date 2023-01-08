@@ -1,0 +1,10 @@
+.main {
+    position: relative;
+    z-index: 1;
+    margin: 15px;
+    padding: 10px;
+    cursor: pointer;
+}
+.main > i {
+    transform: scale(2.1);
+}
