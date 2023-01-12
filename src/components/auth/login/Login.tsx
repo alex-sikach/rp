@@ -2,7 +2,7 @@ import React from "react";
 import styles from './Login.module.css'
 import bg from '../bg.module.css'
 import btn from '../submit.module.css'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {login as loginAC, setData, clearData, setError} from "../../../slices/auth";
 import {ILogin} from "../../../types/interfaces";
@@ -11,6 +11,7 @@ import {RootState} from "../../../store";
 function Login() {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const error = useSelector((state: RootState) => state.auth.error)
 
@@ -53,6 +54,7 @@ function Login() {
         const user_data = await dispatch(loginAC(credentials));
         if(user_data.meta.requestStatus === 'fulfilled') {
             dispatch(setData(user_data.payload))
+            navigate('/')
         } else if(user_data.meta.requestStatus === 'rejected') {
             dispatch(clearData())
         }
@@ -104,7 +106,7 @@ function Login() {
                         <span className={btn.btnBottomKey1}></span>
                         <span className={btn.btnBottomKey2}></span>
                     </button>
-                    <Link to="/registration">Have no account?</Link>
+                    <Link to="/register">Have no account?</Link>
                 </div>
             </div>
             <div className={styles.bottomLight + " " + styles.light}></div>
