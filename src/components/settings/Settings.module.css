@@ -1,0 +1,718 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.main {
+    width: 100vw;
+    min-height: 100vh;
+    background-image: url("../../assets/images/settings_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 75px 25px;
+}
+.wrapper {
+    position: relative;
+    background: rgba( 255, 255, 255, 0.15 );
+    box-shadow: 0 8px 32px 0 rgba(148, 148, 148, 0.47);
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
+    border-radius: 10px;
+    width: 60vw;
+    min-height: 40vh;
+    display: grid;
+    gap: 10px 50px;
+    grid-template-rows: .5fr 2.5fr 2fr .65fr 0.5fr;
+    grid-template-columns: 4fr 6fr 1fr;
+    padding: 16px;
+}
+.wrapper > * {
+    width: 100%;
+    height: 100%;
+}
+.avatar {
+    position: relative;
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    max-width: 100%;
+    max-height: 100%;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+}
+.avatarImg {
+    position: relative;
+    max-width: 180px;
+    max-height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #272634;
+    cursor: pointer;
+    padding: 0;
+}
+.avatarImg > img {
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: 1;
+    transform: scale(1.05);
+}
+.editAvatar {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    width: 100%;
+    height: 40%;
+    background: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-items: center;
+    transition: all .15s ease-in;
+}
+.editAvatar > p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+}
+.popupIcon {
+    position: absolute;
+    color: #1c1b25;
+}
+.popupWrapper {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    aspect-ratio: 16/9;
+    background: #fff;
+    border-radius: 16px;
+    -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+}
+@keyframes anvil {
+    0% {
+        transform: scale(1) translateY(0px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    1% {
+        transform: scale(0.96) translateY(10px);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+    }
+    100% {
+        transform: scale(1) translateY(0px);
+        opacity: 1;
+        box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+    }
+}
+.popupWrapper > .close {
+    align-self: end;
+    cursor: pointer;
+}
+.popupWrapper > *:not(.close) {
+    align-self: center;
+}
+.logout {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+}
+.logout > button,
+.deleteAccount > button {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    padding: 6px 8px;
+    font-size: 1.2em;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #272634;
+    color: #fff;
+    transition: all .1s ease-in-out;
+    overflow: hidden;
+    z-index: 1;
+}
+.logout > button:hover,
+.deleteAccount > button:hover {
+    background: transparent;
+}
+.logout > button::before,
+.deleteAccount > button::before {
+    left: 0;
+    top: 0;
+    transform: translateX(-105%);
+    border: none;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    transition: all .1s ease-in-out;
+    color: #272634;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    border-radius: 12px;
+}
+.deleteAccount > button::before {
+    background: red;
+    color: #fff;
+}
+.logout > button::before { content: 'Logout' }
+.deleteAccount > button::before { content: 'Delete account' }
+.logout > button:hover::before,
+.deleteAccount > button:hover::before {
+    transform: translateX(0);
+}
+.unfulfilled {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+.unfulfilled > p {
+    font-family: 'Montserrat', sans-serif;
+    word-break: break-word;
+    text-shadow: #fff 3px 3px 7px;
+}
+.fullName {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+.fullName > * {
+    height: 100%;
+    width: 100%;
+}
+.theme {
+    grid-column: 2 / 3;
+    grid-row: 3 / 5;
+    display: flex;
+    align-items: start;
+    gap: 24px;
+}
+.theme > p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.1em;
+    text-shadow: #fff 3px 3px 7px;
+    color: #272634;
+}
+.theme > select {
+    border-radius: 12px;
+    outline: none;
+    padding: 5px 35px 5px 10px;
+    font-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    color: #fff;
+    background: url('../../assets/images/arrow-down_white.png') 96% / 15% no-repeat #272634;
+}
+.deleteAccount {
+    grid-column: 3 / 4;
+    grid-row: 5 / 6;
+}
+.deleteAccount > button {
+    background: #000000;
+}
+.logout > button {
+    background: #383838;
+}
+
+@media (max-width: 330px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+    }
+    .wrapper {
+        width: 85vw;
+        padding: 26px 10px;
+        gap: 40px;
+        justify-content: start;
+        align-items: center;
+    }
+    .avatarImg {
+        max-width: 160px;
+        max-height: 160px;
+    }
+    .popupWrapper {
+        width: 85vw;
+    }
+    .popupIcon {
+        top: 25px;
+        right: 25px;
+        transform: scale(2);
+    }
+    .popupWrapper > .close {
+        transform: scale(2);
+        margin: 10px;
+    }
+    .fullName {
+        gap: 20px;
+    }
+    .theme {
+        gap:10px;
+    }
+    .theme > p {
+        font-size: 1.4em;
+    }
+    .theme select {
+        font-size: 12px;
+    }
+    .leave {
+        height: max-content;
+        justify-content: space-between;
+    }
+    .leave button {
+        padding: 6px 8px;
+        font-size: .7em;
+    }
+}
+@media (min-width: 330px) and (max-width:576px) {
+    /* -----------   PHONE   ----------- */
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+    }
+    .wrapper {
+        width: 85vw;
+        padding: 26px 28px;
+        gap: 40px;
+        justify-content: start;
+        align-items: center;
+    }
+    .avatarImg {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    .popupWrapper {
+        width: 80vw;
+    }
+    .popupWrapper > .close {
+        transform: scale(2);
+        margin: 10px;
+    }
+    .popupIcon {
+        top: 35px;
+        right: 35px;
+        transform: scale(2.7);
+    }
+    .unfulfilled > p {
+        font-size: 1.2em;
+    }
+    .fullName {
+        gap: 20px;
+    }
+    .theme {
+        gap: 20px;
+    }
+    .theme > p {
+        font-size: 1.75em;
+    }
+    .theme select {
+        font-size: 16px;
+    }
+    .leave {
+        height: max-content;
+        justify-content: space-between;
+    }
+    .leave button {
+        padding: 6px 8px;
+        font-size: 1em;
+    }
+}
+@media (min-width: 576px) and (max-width: 640px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrapper {
+        width: 80vw;
+        padding: 50px 70px;
+        gap: 60px;
+        justify-content: start;
+        align-items: center;
+    }
+    .avatarImg {
+        max-width: 240px;
+        max-height: 240px;
+    }
+    .popupWrapper {
+        width: 75vw;
+    }
+    .popupWrapper > .close {
+        transform: scale(2);
+        margin: 10px;
+    }
+    .popupIcon {
+        top: 35px;
+        right: 35px;
+        transform: scale(2.7);
+    }
+    .fullName {
+        gap: 30px;
+    }
+    .theme {
+        gap: 50px;
+    }
+    .theme > p {
+        font-size: 2.5em;
+    }
+    .theme > select {
+        width: auto;
+        padding: 5px 35px 5px 10px;
+        font-size: 25px;
+        height: auto;
+    }
+    .leave {
+        justify-content: space-between;
+        /*height: 100%;*/
+        /*border: 1px solid #eee;*/
+    }
+    .leave button {
+        padding: 8px 12px;
+        font-size: 1.3em;
+    }
+    .unfulfilled > p {
+        font-size: 1.5em;
+    }
+}
+@media (min-width: 640px) and (max-width: 992px) {
+    /* -----------   TABLET   ----------- */
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrapper {
+        width: 75vw;
+        padding: 50px 70px;
+        gap: 60px;
+        justify-content: start;
+        align-items: center;
+    }
+    .avatarImg {
+        max-width: 240px;
+        max-height: 240px;
+    }
+    .popupWrapper {
+        width: 70vw;
+    }
+    .popupWrapper > .close {
+        transform: scale(2);
+        margin: 10px;
+    }
+    .popupIcon {
+        top: 35px;
+        right: 35px;
+        transform: scale(2.7);
+    }
+    .unfulfilled > p {
+        font-size: 1.6em;
+    }
+    .fullName {
+        gap: 30px;
+    }
+    .theme {
+        gap: 50px;
+    }
+    .theme > p {
+        font-size: 2.5em;
+    }
+    .theme > select {
+        width: auto;
+        padding: 5px 35px 5px 10px;
+        font-size: 25px;
+        height: auto;
+    }
+    .leave {
+        justify-content: space-between;
+    }
+    .leave button {
+        padding: 8px 12px;
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 992px) {
+    /* -----------   ALL NOT PC   ----------- */
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+    .avatar {
+        order: 1;
+        width: max-content;
+        height: max-content;
+    }
+    .editAvatar {
+        height: 35%;
+    }
+    .fullName {
+        order: 2;
+    }
+    .theme {
+        order: 3;
+        align-items: center;
+    }
+    .leave {
+        order: 4;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .popupWrapper {
+        padding: 8px;
+    }
+}
+@media (min-width: 992px) {
+    /*  -------- ALL MORE or PC  */
+    .popupWrapper > .close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+    .popupWrapper {
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+    }
+    .popupWrapper > .submitDeleting > button {
+        font-family: 'Montserrat', sans-serif;
+        border-radius: 12px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background: #000000;
+        color: #fff;
+        transition: all .1s ease-in-out;
+        overflow: hidden;
+        z-index: 1;
+    }
+    .submitDeleting > button:hover {
+        background: red;
+    }
+}
+@media (min-width: 992px) and (max-width: 1100px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrapper {
+        width: 80vw;
+        padding: 50px 50px;
+        max-height: 80vh;
+    }
+    .avatarImg {
+        max-width: 220px;
+        max-height: 220px;
+    }
+    .unfulfilled > p {
+        font-size: 1.5em;
+    }
+    .fullName {
+        gap: 30px;
+    }
+    .theme {
+        gap: 20px;
+    }
+    .theme > p {
+        font-size: 2.5em;
+    }
+    .theme > select {
+        margin-top: 10px;
+        width: auto;
+        padding: 5px 35px 5px 10px;
+        font-size: 20px;
+        height: auto;
+    }
+    .popupWrapper {
+        padding: 32px;
+        width: 60vw;
+    }
+    .popupWrapper > .close {
+        margin: 20px 12px;
+        transform: scale(2.7);
+        margin: 14px;
+    }
+    .popupWrapper > p {
+        font-size: 2em;
+    }
+    .popupWrapper > .submitDeleting button {
+        font-size: 2em;
+        padding: 25px 35px;
+    }
+}
+@media (min-width: 1100px) and (max-width: 1500px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrapper {
+        width: 80vw;
+        padding: 50px 50px;
+        max-height: 60vh;
+        gap: 30px 50px;
+    }
+    .avatarImg {
+        max-width: 250px;
+        max-height: 250px;
+    }
+    .unfulfilled > p {
+        font-size: 1.85em;
+    }
+    .fullName {
+        gap: 40px;
+    }
+    .theme {
+        gap: 20px;
+    }
+    .theme > p {
+        font-size: 2.7em;
+    }
+    .theme > select {
+        margin-top: 10px;
+        width: auto;
+        padding: 5px 35px 5px 10px;
+        font-size: 25px;
+        height: auto;
+    }
+    .logout > button,
+    .deleteAccount > button {
+        font-size: 1.3em;
+    }
+    .popupWrapper {
+        padding: 32px;
+        width: 50vw;
+    }
+    .popupWrapper > .close {
+        margin: 20px 12px;
+        transform: scale(2.7);
+        margin: 14px;
+    }
+    .popupWrapper > p {
+        font-size: 2em;
+    }
+    .popupWrapper > .submitDeleting button {
+        font-size: 2em;
+        padding: 25px 35px;
+    }
+}
+@media (min-width: 1500px) and (max-width: 1700px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrapper {
+        width: 65vw;
+        padding: 50px 50px;
+        max-height: 80vh;
+        gap: 10px 50px;
+    }
+    .avatarImg {
+        max-width: 210px;
+        max-height: 210px;
+    }
+    .unfulfilled > p {
+        font-size: 1.85em;
+    }
+    .fullName {
+        gap: 30px;
+    }
+    .theme {
+        gap: 20px;
+    }
+    .theme > p {
+        font-size: 2.7em;
+    }
+    .theme > select {
+        margin-top: 10px;
+        width: auto;
+        padding: 5px 35px 5px 10px;
+        font-size: 25px;
+        height: auto;
+    }
+    .logout > button,
+    .deleteAccount > button {
+        font-size: 1.3em;
+    }
+    .popupWrapper {
+        padding: 32px;
+        width: 50vw;
+    }
+    .popupWrapper > .close {
+        margin: 20px 12px;
+        transform: scale(2.7);
+        margin: 14px;
+    }
+    .popupWrapper > p {
+        font-size: 2em;
+    }
+    .popupWrapper > .submitDeleting button {
+        font-size: 2em;
+        padding: 25px 35px;
+    }
+}
+@media (min-width: 1700px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrapper {
+        width: min(65vw, 1500px);
+        padding: 50px 50px;
+        max-height: 60vh;
+    }
+    .avatarImg {
+        max-width: 280px;
+        max-height: 280px;
+    }
+    .unfulfilled > p {
+        font-size: 2.2em;
+    }
+    .fullName {
+        gap: 10px;
+    }
+    .theme {
+        gap: 20px;
+    }
+    .theme > p {
+        font-size: 3em;
+    }
+    .theme > select {
+        margin-top: 10px;
+        width: auto;
+        padding: 5px 35px 5px 10px;
+        font-size: 30px;
+        height: auto;
+    }
+    .logout > button,
+    .deleteAccount > button {
+        font-size: 1.7em;
+    }
+    .popupWrapper {
+        padding: 32px;
+        width: 50vw;
+    }
+    .popupWrapper > .close {
+        margin: 20px 12px;
+        transform: scale(2.7);
+        margin: 14px;
+    }
+    .popupWrapper > p {
+        font-size: 2em;
+    }
+    .popupWrapper > .submitDeleting button {
+        font-size: 2em;
+        padding: 25px 35px;
+    }
+}
