@@ -72,6 +72,23 @@ export const deleteAccount = createAsyncThunk(
         //     // todo: making a request to server
     }
 )
+export const profile = createAsyncThunk(
+    'auth/profile',
+    async (_:any, {rejectWithValue}) => {
+        try {
+            const user = await axios({
+                url: '/api' + '/fetch' + '/profile',
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            return user.data
+        } catch (e: any) {
+            return rejectWithValue(e.response.data)
+        }
+    }
+)
 
 export const auth = createSlice({
     name: "auth",
@@ -163,6 +180,22 @@ export const auth = createSlice({
         builder.addCase(deleteAccount.rejected, (state: IAuthState, action: any) => {
             state.loading = false;
             state.error = action.payload.message || 'Lost error message'
+        })
+        builder.addCase(profile.pending, (state: IAuthState) => {
+            state.loading = true
+            state.error = null
+        })
+        builder.addCase(profile.fulfilled, (state: IAuthState) => {
+            state.loading = false
+            state.error = null;
+        })
+        builder.addCase(profile.rejected, (state: IAuthState, action: any) => {
+            state.loading = false;
+            state.error = action.payload.message || 'Lost error message'
+            localStorage.setItem('authed', JSON.stringify({
+                authed: 'false',
+                expires: Date.now()
+            }))
         })
     }
 })
