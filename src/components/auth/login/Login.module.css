@@ -223,7 +223,7 @@
         display: none;
     }
     .main {
-        overflow: hidden;
+        overflow-x: hidden;
         width: 100vw;
         height: 100vh;
         font-size: 3.5em;
@@ -257,7 +257,7 @@
         display: none;
     }
     .main {
-        overflow: hidden;
+        overflow-x: hidden;
         width: 100vw;
         height: 100vh;
         font-size: 3.5em;
