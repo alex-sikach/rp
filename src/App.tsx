@@ -6,7 +6,7 @@ import Login from './components/auth/login/Login'
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./store";
 import {clearData, profile, setData} from "./slices/auth";
-import Settings from "./components/settings/Settings";
+import Settings from "./components/settings/Settings/Settings";
 import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {

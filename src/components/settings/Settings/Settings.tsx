@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import styles from './Settings.module.css'
-import Input from "./Input";
+import Input from "../Input/Input";
 import {useSelector} from "react-redux";
-import {RootState} from "../../store";
-import autoAvatar from "../../assets/images/auto-avatar.png";
-import Unfulfilled from "./Unfulfilled";
-import Popup from "reactjs-popup";
-import {PopupActions} from "reactjs-popup/dist/types";
+import {RootState} from "../../../store";
+import autoAvatar from "../../../assets/images/auto-avatar.png";
+import Unfulfilled from "../Unfulfilled/Unfulfilled";
+import DeleteAccount from "../DeleteAccount/DeleteAccount";
+import UnfulfilledPopup from "../Unfulfilled/Popup";
+import {UnfulfilledPopupProps} from "../types";
 
 //todo: type the props
 function Settings() {
@@ -15,9 +16,11 @@ function Settings() {
     const lastname = useSelector((state: RootState) => state.auth.lastname) || 'lastname'
     // todo: remove hardcode
     const todosRest = 9
+    const UnfulfilledProps: UnfulfilledPopupProps = {
+        todosRest
+    }
 
     const editEl = React.useRef<HTMLImageElement>(null)
-    const popup = React.useRef<PopupActions>(null)
 
     function showEditPanel() {
         if (editEl.current) {
@@ -80,33 +83,9 @@ function Settings() {
                     window.innerWidth <= 992
                         ?
                         <>
-                            <Popup
-                                trigger={
-                                <div>
-                                    <i  className={styles.popupIcon + " fa-solid fa-clipboard-list"}></i>
-                                </div>
-                                }
-                                modal
-                                nested
-                                ref={popup}
-                            >
-                                {/*@ts-ignore*/}
-                                {close => {
-                                        return (
-                                            <div className={styles.popupWrapper}>
-                                                <div className={styles.close} onClick={close}>
-                                                    <i className="fa-solid fa-xmark"></i>
-                                                </div>
-                                                <Unfulfilled amount={todosRest} />
-                                            </div>
-                                        )
-                                    }
-                                }
-                            </Popup>
+                            <UnfulfilledPopup {...UnfulfilledProps} />
                             <div className={styles.leave}>
-                                <div className={styles.deleteAccount}>
-                                    <button>Delete account</button>
-                                </div>
+                                <DeleteAccount />
                                 <div className={styles.logout}>
                                     <button>Logout</button>
                                 </div>
@@ -114,32 +93,8 @@ function Settings() {
                         </>
                         :
                         <>
-                            <Unfulfilled amount={todosRest}/>
-                            <Popup
-                                trigger={
-                                    <div className={styles.deleteAccount}>
-                                        <button>Delete account</button>
-                                    </div>
-                                }
-                                modal
-                                nested
-                            >
-                                {/*@ts-ignore*/}
-                                {close => {
-                                    return (
-                                        <div className={styles.popupWrapper}>
-                                            <div className={styles.close} onClick={close}>
-                                                <i className="fa-solid fa-xmark"></i>
-                                            </div>
-                                            <p>Are you sure you want to permanently delete your account?</p>
-                                            <div className={styles.submitDeleting}>
-                                                <button>Submit</button>
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                                }
-                            </Popup>
+                            <Unfulfilled {...UnfulfilledProps} />
+                            <DeleteAccount />
                             <div className={styles.logout}>
                                 <button>Logout</button>
                             </div>
