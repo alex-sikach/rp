@@ -35,6 +35,17 @@ function Login() {
         }
     }
 
+    function loginOnKeyDown(e:React.KeyboardEvent) {
+        if(e.key === 'Enter') {
+            password.current?.focus()
+        }
+    }
+    function passwordOnKeyDown(e:React.KeyboardEvent) {
+        if(e.key === 'Enter') {
+            loginSubmit()
+        }
+    }
+
     async function loginSubmit() {
 
         if(
@@ -78,6 +89,7 @@ function Login() {
                             ref={login}
                             placeholder='Username'
                             value={loginValue}
+                            onKeyDown={loginOnKeyDown}
                             onChange={() => setLoginValue(login.current?.value ?? 'error')}
                         />
                     </div>
@@ -87,6 +99,7 @@ function Login() {
                             ref={password}
                             placeholder='Password'
                             value={passwordValue}
+                            onKeyDown={passwordOnKeyDown}
                             onChange={() => setPasswordValue(password.current?.value ?? 'error')}
                         />
                         <i className="fa-solid fa-eye" onClick={togglePasswordType} ref={togglePasswordBtn}></i>
