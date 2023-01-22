@@ -4,7 +4,7 @@ import bg from '../bg.module.css'
 import btn from '../submit.module.css'
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {login as loginAC, setData, clearData, setError} from "../../../slices/auth";
+import {login as loginAC, setData, setError} from "../../../slices/auth";
 import {ILogin} from "../../../types/interfaces";
 import {RootState} from "../../../store";
 
@@ -55,8 +55,6 @@ function Login() {
         if(user_data.meta.requestStatus === 'fulfilled') {
             dispatch(setData(user_data.payload))
             navigate('/')
-        } else if(user_data.meta.requestStatus === 'rejected') {
-            dispatch(clearData())
         }
     }
 

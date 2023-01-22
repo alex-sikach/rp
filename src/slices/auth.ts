@@ -14,7 +14,7 @@ const initialState: IAuthState = {
     loading: false
 }
 
-function clearDataReducer(state: IAuthState, error: string | null = null) {
+function clearData(state: IAuthState, error: string | null = null) {
     state.loggedIn = false;
     state.username = null;
     state.password = null;
@@ -119,7 +119,6 @@ export const auth = createSlice({
             state.avatar = data.payload.avatar
             state.theme = data.payload.theme
         },
-        clearData: (state: IAuthState) => clearDataReducer(state),
         setError: (state: IAuthState, data: PayloadAction<{error: string | null}>) => {
             state.error = data.payload.error
         }
@@ -138,12 +137,11 @@ export const auth = createSlice({
             }))
         })
         builder.addCase(login.rejected, (state: IAuthState, action: any) => {
-            state.loading = false;
-            state.error = action.payload.message || 'Lost error message'
             localStorage.setItem('authed', JSON.stringify({
                 authed: 'false',
                 expires: Date.now()
             }))
+            clearData(state, action.payload.message || 'Lost error message')
         })
         builder.addCase(logout.pending, (state: IAuthState) => {
             state.loading = true
@@ -151,11 +149,11 @@ export const auth = createSlice({
         })
         builder.addCase(logout.fulfilled, (state: IAuthState) => {
             localStorage.removeItem('authed')
-            clearDataReducer(state)
+            clearData(state)
         })
         builder.addCase(logout.rejected, (state: IAuthState, action: any) => {
             localStorage.removeItem('authed')
-            clearDataReducer(state, action.payload.message || 'Lost error message')
+            clearData(state, action.payload.message || 'Lost error message')
         })
         builder.addCase(register.pending, (state: IAuthState) => {
             state.loading = true
@@ -190,15 +188,14 @@ export const auth = createSlice({
             state.error = null;
         })
         builder.addCase(profile.rejected, (state: IAuthState, action: any) => {
-            state.loading = false;
-            state.error = action.payload.message || 'Lost error message'
             localStorage.setItem('authed', JSON.stringify({
                 authed: 'false',
                 expires: Date.now()
             }))
+            clearData(state, action.payload.message || 'Lost error message')
         })
     }
 })
 
-export const {setData, clearData, setError} = auth.actions
+export const {setData, setError} = auth.actions
 export default auth.reducer

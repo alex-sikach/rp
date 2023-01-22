@@ -5,7 +5,7 @@ import Register from './components/auth/register/Register'
 import Login from './components/auth/login/Login'
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./store";
-import {clearData, profile, setData} from "./slices/auth";
+import {profile, setData} from "./slices/auth";
 import Settings from "./components/settings/Settings/Settings";
 import Sidebar from "./components/sidebar/Sidebar";
 
@@ -22,8 +22,6 @@ function App() {
         const user_data = await dispatch(profile(''));
         if(user_data.meta.requestStatus === 'fulfilled') {
             dispatch(setData(user_data.payload))
-        } else if(user_data.meta.requestStatus === 'rejected') {
-            dispatch(clearData())
         }
     }
     if(localStorageMark.authed && Date.now() < localStorageMark.expires && !stateMark) {
