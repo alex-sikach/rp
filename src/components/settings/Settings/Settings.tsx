@@ -8,6 +8,7 @@ import Unfulfilled from "../Unfulfilled/Unfulfilled";
 import DeleteAccount from "../DeleteAccount/DeleteAccount";
 import UnfulfilledPopup from "../Unfulfilled/Popup";
 import {UnfulfilledPopupProps} from "../types";
+import Logout from "../Logout/Logout";
 
 //todo: type the props
 function Settings() {
@@ -86,18 +87,14 @@ function Settings() {
                             <UnfulfilledPopup {...UnfulfilledProps} />
                             <div className={styles.leave}>
                                 <DeleteAccount />
-                                <div className={styles.logout}>
-                                    <button>Logout</button>
-                                </div>
+                                <Logout />
                             </div>
                         </>
                         :
                         <>
                             <Unfulfilled {...UnfulfilledProps} />
                             <DeleteAccount />
-                            <div className={styles.logout}>
-                                <button>Logout</button>
-                            </div>
+                            <Logout />
                         </>
                 }
             </div>

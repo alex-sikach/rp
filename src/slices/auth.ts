@@ -14,6 +14,18 @@ const initialState: IAuthState = {
     loading: false
 }
 
+function clearDataReducer(state: IAuthState, error: string | null = null) {
+    state.loggedIn = false;
+    state.username = null;
+    state.password = null;
+    state.name = null;
+    state.lastname = null;
+    state.avatar = null
+    state.theme = null
+    state.error = error
+    state.loading = false
+}
+
 export const login = createAsyncThunk(
     'auth/login',
     async (credentials: ILogin, {rejectWithValue}) => {
@@ -42,15 +54,19 @@ export const login = createAsyncThunk(
 )
 export const logout = createAsyncThunk(
     'auth/logout',
-    async () => {
-        //     state.loggedIn = false
-        //     state.username = null
-        //     state.password = null
-        //     state.name = null
-        //     state.lastname = null
-        //     state.avatar = null
-        //     state.theme = null
-        // todo: making a request to server
+    async (_: any, {rejectWithValue}) => {
+        try {
+            await axios({
+                url: '/api' + '/auth' + '/logout',
+                method: 'GET',
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+        } catch (e: any) {
+            return rejectWithValue(e.response.data)
+        }
     }
 )
 export const register = createAsyncThunk(
@@ -103,15 +119,7 @@ export const auth = createSlice({
             state.avatar = data.payload.avatar
             state.theme = data.payload.theme
         },
-        clearData: (state: IAuthState) => {
-            state.loggedIn = false;
-            state.username = null;
-            state.password = null;
-            state.name = null;
-            state.lastname = null;
-            state.avatar = null
-            state.theme = null
-        },
+        clearData: (state: IAuthState) => clearDataReducer(state),
         setError: (state: IAuthState, data: PayloadAction<{error: string | null}>) => {
             state.error = data.payload.error
         }
@@ -142,20 +150,12 @@ export const auth = createSlice({
             state.error = null
         })
         builder.addCase(logout.fulfilled, (state: IAuthState) => {
-            state.loading = false
-            state.error = null
-            localStorage.setItem('authed', JSON.stringify({
-                authed: 'false',
-                expires: Date.now()
-            }))
+            localStorage.removeItem('authed')
+            clearDataReducer(state)
         })
         builder.addCase(logout.rejected, (state: IAuthState, action: any) => {
-            state.loading = false;
-            state.error = action.payload.message || 'Lost error message'
-            localStorage.setItem('authed', JSON.stringify({
-                authed: 'false',
-                expires: Date.now()
-            }))
+            localStorage.removeItem('authed')
+            clearDataReducer(state, action.payload.message || 'Lost error message')
         })
         builder.addCase(register.pending, (state: IAuthState) => {
             state.loading = true

@@ -26,7 +26,6 @@ function App() {
             dispatch(clearData())
         }
     }
-
     if(localStorageMark.authed && Date.now() < localStorageMark.expires && !stateMark) {
         fetchProfile()
     }
