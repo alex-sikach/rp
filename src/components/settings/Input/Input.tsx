@@ -26,6 +26,9 @@ function Input(props: {name: string}) {
             if(remove(inp.current.value.trim(), specialDigits).length < 2) {
                 setInpValue(props.name)
                 setError(true)
+                setTimeout(() => {
+                    setError(false)
+                }, 6000)
             } else {
                 setError(false)
             }
