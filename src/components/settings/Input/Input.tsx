@@ -51,26 +51,29 @@ function Input(props: {name: string}) {
     return(
         <>
             <div className={styles.main}>
-                <input
-                    type="text"
-                    ref={inp}
-                    readOnly={true}
-                    value={inpValue || ''}
-                    disabled={true}
-                    onKeyDown={keyDownHandler}
-                    onChange={typingHandler}
-                ></input>
-                <div className={styles.edit} onClick={edit}>
-                    <i ref={btn} className="fa-sharp fa-solid fa-pencil"></i>
+                <div className={styles.content}>
+                    <input
+                        type="text"
+                        ref={inp}
+                        readOnly={true}
+                        value={inpValue || ''}
+                        disabled={true}
+                        onKeyDown={keyDownHandler}
+                        onChange={typingHandler}
+                        className={styles.inp}
+                    ></input>
+                    <div className={styles.edit} onClick={edit}>
+                        <i ref={btn} className="fa-sharp fa-solid fa-pencil"></i>
+                    </div>
                 </div>
+                {err ?
+                    <div className={styles.error}>
+                        <p>The input must include at least 2 letters.</p>
+                    </div>
+                    :
+                    ''
+                }
             </div>
-            {err ?
-                <div className={styles.error}>
-                    <p>The input must include at least 2 letter.</p>
-                </div>
-                :
-                ''
-            }
         </>
     )
 }

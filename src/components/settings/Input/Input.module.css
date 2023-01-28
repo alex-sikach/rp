@@ -1,6 +1,11 @@
 .main {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main > .content {
+    display: flex;
     gap: 12px;
     align-items: center;
 }
@@ -13,7 +18,7 @@
     aspect-ratio: 1;
     border-radius: 8px;
 }
-.main > input {
+.inp {
     width: 100%;
     background: transparent;
     border: none;
@@ -26,13 +31,10 @@
     letter-spacing: 0.01em;
     letter-spacing: -1px;
 }
-.main > input:focus {
+.inp:focus {
     border: 3px solid #272634;
     border-radius: 14px;
     box-sizing: border-box;
-}
-.error {
-    margin-top: -10px;
 }
 .error > p {
     font-family: 'Inconsolata', monospace;
@@ -49,13 +51,13 @@
         transform: scale(1.3);
     }
 
-    .main > input {
+    .inp {
         font-size: 3em;
     }
 }
 
 @media (max-width: 329px) {
-    .main > input {
+    .inp {
         font-size: 1.7em;
     }
 }
@@ -68,7 +70,7 @@
     .edit {
         width: 65px;
     }
-    .main > input {
+    .inp {
         font-size: 2.3em;
     }
 }
@@ -88,7 +90,7 @@
     .edit {
         width: 65px;
     }
-    .main > input {
+    .inp {
         font-size: 2.3em;
     }
     .edit > i {
@@ -103,7 +105,7 @@
     .edit {
         width: 80px;
     }
-    .main > input {
+    .inp {
         font-size: 3em;
     }
     .edit > i {
@@ -118,7 +120,7 @@
     .edit {
         width: 80px;
     }
-    .main > input {
+    .inp {
         font-size: 3em;
     }
     .edit > i {
@@ -133,7 +135,7 @@
     .edit {
         width: 80px;
     }
-    .main > input {
+    .inp {
         font-size: 3em;
     }
     .edit > i {
